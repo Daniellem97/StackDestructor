@@ -9,6 +9,11 @@ resource "spacelift_stack" "stackdestroytest" {
 resource "spacelift_stack_destructor" "stackdestroytest" {
   stack_id = spacelift_stack.stackdestroytest.id
 }
+resource "spacelift_aws_integration" "this" {
+  name                          = var.role_name
+  role_arn                      = var.role_arn
+  generate_credentials_in_worker = false
+}
 
 resource "spacelift_aws_integration_attachment" "this" {
   integration_id = spacelift_aws_integration.this.id
@@ -23,9 +28,9 @@ resource "spacelift_aws_integration_attachment" "this" {
 }
 
 resource "spacelift_run" "this" {
-  stack_id = spacelift_stack.this.id
+  stack_id = spacelift_stack.stackdestroytest.id
 
   keepers = {
-    branch = spacelift_stack.this.branch
+    branch = spacelift_stack.stackdestroytest.branch
   }
 }
