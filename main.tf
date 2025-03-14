@@ -6,6 +6,18 @@ resource "spacelift_stack" "stackdestroytest" {
   project_root = "S3bucket"
 }
 
+resource "spacelift_context" "test-ie" {
+  description = "Configuration details for the compute cluster in 🇮🇪"
+  name        = "Production cluster (Ireland)"
+}
+
+resource "spacelift_environment_variable" "virtual_wan_app_configuration_private_dns_zone_id" {
+  context_id  = spacelift_context.test-ie.id
+  name        = "TF_VAR_virtual_wan_app_configuration_private_dns_zone_id"
+  value       = "test"
+  description = "Virtual WAN app configuration private DNS zone ID"
+  write_only  = false
+}
 
 resource "spacelift_aws_integration" "this" {
   name                          = var.role_name
