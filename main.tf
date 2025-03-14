@@ -6,9 +6,7 @@ resource "spacelift_stack" "stackdestroytest" {
   project_root = "S3bucket"
 }
 
-resource "spacelift_stack_destructor" "stackdestroytest" {
-  stack_id = spacelift_stack.stackdestroytest.id
-}
+
 resource "spacelift_aws_integration" "this" {
   name                          = var.role_name
   role_arn                      = var.role_arn
