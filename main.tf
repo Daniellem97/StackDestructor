@@ -11,11 +11,11 @@ resource "spacelift_context" "test-ie" {
   name        = "Production cluster (Ireland)"
 }
 
-resource "spacelift_environment_variable" "virtual_wan_app_configuration_private_dns_zone_id" {
+resource "spacelift_environment_variable" "virtual_wan_registry_private_dns_zone_id" {
   context_id  = spacelift_context.test-ie.id
-  name        = "TF_VAR_virtual_wan_app_configuration_private_dns_zone_id"
+  name        = "TF_VAR_virtual_wan_registry_private_dns_zone_id"  
   value       = "test"
-  description = "Virtual WAN app configuration private DNS zone ID"
+  description = "Virtual WAN registry private DNS zone ID"
   write_only  = false
 }
 
