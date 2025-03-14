@@ -21,3 +21,11 @@ resource "spacelift_aws_integration_attachment" "this" {
     spacelift_aws_integration.this
   ]
 }
+
+resource "spacelift_run" "this" {
+  stack_id = spacelift_stack.this.id
+
+  keepers = {
+    branch = spacelift_stack.this.branch
+  }
+}
